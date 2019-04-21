@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Films_Library", "Films_Library\Films_Library.csproj", "{8DEDF874-FFC6-4F15-B15A-536BD20015AD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8DEDF874-FFC6-4F15-B15A-536BD20015AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DEDF874-FFC6-4F15-B15A-536BD20015AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DEDF874-FFC6-4F15-B15A-536BD20015AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DEDF874-FFC6-4F15-B15A-536BD20015AD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

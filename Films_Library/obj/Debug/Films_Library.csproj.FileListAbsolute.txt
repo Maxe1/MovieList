@@ -1,0 +1,10 @@
+C:\Users\Maxel\Documents\Visual Studio 2012\Projects\Films_Library\Films_Library\bin\Debug\Films_Library.exe.config
+C:\Users\Maxel\Documents\Visual Studio 2012\Projects\Films_Library\Films_Library\obj\Debug\Films_Library.csprojResolveAssemblyReference.cache
+C:\Users\Maxel\Documents\Visual Studio 2012\Projects\Films_Library\Films_Library\obj\Debug\Films_Library.Properties.Resources.resources
+C:\Users\Maxel\Documents\Visual Studio 2012\Projects\Films_Library\Films_Library\obj\Debug\Films_Library.csproj.GenerateResource.Cache
+C:\Users\Maxel\Documents\Visual Studio 2012\Projects\Films_Library\Films_Library\bin\Debug\Films_Library.exe
+C:\Users\Maxel\Documents\Visual Studio 2012\Projects\Films_Library\Films_Library\bin\Debug\Films_Library.pdb
+C:\Users\Maxel\Documents\Visual Studio 2012\Projects\Films_Library\Films_Library\obj\Debug\Films_Library.exe
+C:\Users\Maxel\Documents\Visual Studio 2012\Projects\Films_Library\Films_Library\obj\Debug\Films_Library.pdb
+C:\Users\Maxel\Documents\Visual Studio 2012\Projects\Films_Library\Films_Library\bin\Debug\InterfacePlugin.dll
+C:\Users\Maxel\Documents\Visual Studio 2012\Projects\Films_Library\Films_Library\obj\Debug\Films_Library.Form1.resources
