@@ -14,6 +14,7 @@ using System.Text.RegularExpressions;
 
 namespace Films_Library
 {
+
     public partial class Form1 : Form
     {
         private string path = null;
@@ -34,22 +35,16 @@ namespace Films_Library
             DirectoryInfo pluginDirectory = new DirectoryInfo(pluginPath);
             if (!pluginDirectory.Exists)
                 pluginDirectory.Create();
-            //берем из директории все файлы с расширением .dll      
-            var pluginFiles = Directory.GetFiles(pluginPath, "*.dll");
-            foreach (var file in pluginFiles)
+            String[] pluginFiles = Directory.GetFiles(pluginPath, "*.dll");
+            foreach (string file in pluginFiles)
             {
-                //загружаем сборку
                 Assembly asm = Assembly.LoadFrom(file);
-                //ищем типы, имплементирующие наш интерфейс IPlugin,
-                //чтобы не захватить лишнего
                 var types = asm.GetTypes().
                                 Where(t => t.GetInterfaces().
                                 Where(i => i.FullName == typeof(IPlugin).FullName).Any());
-
-                //заполняем экземплярами полученных типов коллекцию плагинов
-                foreach (var type in types)
+                foreach (Type type in types)
                 {
-                    var plugin = asm.CreateInstance(type.FullName) as IPlugin;
+                    IPlugin plugin = asm.CreateInstance(type.FullName) as IPlugin;
                     plugins.Add(plugin);
                 }
             }
@@ -66,7 +61,7 @@ namespace Films_Library
             form.listBox1.Items.Add(" ");
             XDocument xdoc = XDocument.Load(path);
             MovieList actor = new MovieList();
-
+            
             var items = from xe in xdoc.Element("movies").Elements("movie")
                         select new
                         {
@@ -160,8 +155,7 @@ namespace Films_Library
         }
     
         public string RemoveSpace(string str) {
-            var res = str.Replace(" ", "");
-            return res;
+            return str.Replace(" ", "");
         }
         /// <summary>
         /// One of main method of program are filtering information from movie file and show on box to depending on the filter.
@@ -170,7 +164,7 @@ namespace Films_Library
         {
            XDocument xdoc = XDocument.Load(path);
            var value = xdoc.Element("movies").Elements("movie");
-           var qwerty = from xe in xdoc.Element("movies").Elements("movie")
+           var valueactor = from xe in xdoc.Element("movies").Elements("movie")
                        select new
                        {
                            Title = xe.Element("title").Value,
@@ -188,17 +182,17 @@ namespace Films_Library
                        };
             
 
-           foreach (var index in this.filters) 
+           foreach (OutCheckBox index in this.filters) 
            {
                if (index.select.Count > 0)       
                {
                    if (index.name == "actor") {
                        List<string> films = new List<string>();
-                       foreach (var aa in qwerty)
+                       foreach (var actortitle in valueactor)
                        {
-                           if (aa.actor.Any(k => index.select.Exists(y => y.Contains(k.First_name))))
+                           if (actortitle.actor.Any(k => index.select.Exists(y => y.Contains(k.First_name))))
                            {
-                               films.Add(aa.Title);
+                               films.Add(actortitle.Title);
                            }
                        }              
                        value.Where(x => !films.Exists(y => x.Value.Contains(y))).Remove();
@@ -209,6 +203,7 @@ namespace Films_Library
                    }
                }
            }
+           
            var items = from xe in value
                        select new Movie
                        {
@@ -222,7 +217,7 @@ namespace Films_Library
 
             listBox1.Items.Clear();
             textBox1.Text = "";
-                foreach (var item in items)
+                foreach (Movie item in items)
                 {
                     SetTextList(item.Title, item.Year, item.Country , item.Genre,  item.Director,item.Actor );
                 }
@@ -252,9 +247,9 @@ namespace Films_Library
         {
             try
             {
-                foreach (var plugin in plugins)
+                foreach (IPlugin plugin in plugins)
                 {
-                    var control = new OutCheckBox(plugin, path, this);
+                    OutCheckBox control = new OutCheckBox(plugin, path, this);
                     this.filters.Add(control);
                     flowLayoutPanel1.Controls.Add(control);
                 }
@@ -265,7 +260,6 @@ namespace Films_Library
                 MessageBox.Show("Security error.\n\nError message: {ex.Message}\n\n" +
                 "Details:\n\n{ex.StackTrace}" + ex);
             }
-
         }
         
 
@@ -289,10 +283,8 @@ namespace Films_Library
                 if (dialogResult == DialogResult.Cancel)
                 {
                     opendialog.Reset();
-
                 }
             }
-
             return path;
         }
 
@@ -362,5 +354,5 @@ namespace Films_Library
         public string Actor { get; set; }
     }
 
-    
+        
 }
